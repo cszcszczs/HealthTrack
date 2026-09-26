@@ -8,7 +8,7 @@ def start():
         port=7000,
         reload=True
     )
-    
+
     print("Server is running.")
 
 def main():

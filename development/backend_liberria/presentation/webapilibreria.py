@@ -1,9 +1,30 @@
 #webliberria.py
 
-from fastapi import FastAPI
+from fastapi import FastAPI, responses
+
+from domain.entitylibreria import EntityLiberira
 
 app = FastAPI(
     title="API Libreria",
     description="API para la libreria",
     version="1.0.0"
 )
+
+## GET
+@app.get(
+    "/consultarlibreriatodo",
+    summary="Consultar Libreria Todo",
+    description="Consultar Liberia Todo",
+    tags=["Libreria"]
+)
+async def constultar_libreria_todo():
+    return "OK"
+
+@app.get(
+    "/consultarlibreria/{IdLibreria}",
+    summary="Consultar Libreria Uno",
+    description="Consultar Liberia Uno",
+    tags=["Libreria"]
+)
+async def constultar_libreria_uno(IdLibreria: int):
+    return IdLibreria
