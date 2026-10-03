@@ -4,6 +4,8 @@ from fastapi import FastAPI, responses
 
 from domain.entitylibreria import EntityLiberira
 
+librerias = []
+
 app = FastAPI(
     title="API Libreria",
     description="API para la libreria",
@@ -18,7 +20,7 @@ app = FastAPI(
     tags=["Libreria"]
 )
 async def constultar_libreria_todo():
-    return "OK"
+    return librerias
 
 @app.get(
     "/consultarlibreria/{IdLibreria}",
@@ -27,4 +29,10 @@ async def constultar_libreria_todo():
     tags=["Libreria"]
 )
 async def constultar_libreria_uno(IdLibreria: int):
-    return IdLibreria
+    return list(filter(lambda libreria: IdLibreria == libreria.Idlibreria, librerias))
+
+## POST
+@app.post("/librerias")
+async def crear_libro(libreria: EntityLiberira):
+    librerias.append(libreria)
+    return { "message": "Item created"}
