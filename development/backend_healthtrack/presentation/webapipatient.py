@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from domain.patient import PatientInput
 from application.patientservice import PatientService
@@ -7,6 +8,20 @@ app = FastAPI(
     title="HealthTrack API",
     description="API para la gestión de pacientes de HealthTrack",
     version="1.0.0"
+)
+
+# Configuración CORS: permitir el frontend de React
+origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
+    allow_headers=["Content-Type", "Authorization"],
 )
 
 service = PatientService()
