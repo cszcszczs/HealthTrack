@@ -11,10 +11,10 @@ class PatientService:
     def __init__(self):
         self.repository = MemoryRepository()
 
-    def consultar(self):
+    def consultar(self, include_inactive: bool = False):
         return {
             "operacion": "Consulta realizada",
-            "payload": self.repository.get_all(),
+            "payload": self.repository.get_all(include_inactive),
         }
 
     def consultar_por_id(self, patient_id: str):

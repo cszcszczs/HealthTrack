@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 
 from domain.patient import PatientInput
@@ -45,11 +45,11 @@ async def inicio():
 @app.get(
     "/api/patients",
     summary="Consultar pacientes",
-    description="Consultar pacientes activos",
+    description="Consultar pacientes activos y, opcionalmente, inactivos",
     tags=["Patients"]
 )
-async def consultar():
-    return service.consultar()
+async def consultar(include_inactive: bool = Query(default=False)):
+    return service.consultar(include_inactive)
 
 
 # --------------------------------

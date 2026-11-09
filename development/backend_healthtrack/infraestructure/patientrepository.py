@@ -7,7 +7,9 @@ class MemoryRepository:
     def __init__(self):
         self.patients: list[Patient] = []
 
-    def get_all(self):
+    def get_all(self, include_inactive: bool = False):
+        if include_inactive:
+            return self.patients.copy()
         return [patient for patient in self.patients if patient.isActive]
 
     def get_one(self, patient_id: str):

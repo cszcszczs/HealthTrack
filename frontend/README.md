@@ -27,7 +27,7 @@ Abre la URL local que imprime Vite (normalmente `http://localhost:5173`). Para g
 
 ## Conexión con FastAPI
 - Base URL predeterminada: `http://127.0.0.1:7000`.
-- `GET /api/patients`: carga el directorio.
+- `GET /api/patients`: carga los pacientes activos; añade `?include_inactive=true` para incluir también los inactivos. El directorio del frontend incluye ambos estados para que se puedan filtrar.
 - `POST /api/patients`: crea un paciente.
 - `GET /api/patients/{patient_id}`: consulta por UUID.
 - `PUT /api/patients/{patient_id}`: actualiza el paciente.
